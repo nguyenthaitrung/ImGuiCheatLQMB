@@ -1,0 +1,35 @@
+//
+//  bdvt encoding and decoding with C++.
+//  Version: 2.rc.09 (release candidate)
+//
+
+#ifndef bdvt_H_C0CE2A47_D10E_42C9_A27C_C883944E704A
+#define bdvt_H_C0CE2A47_D10E_42C9_A27C_C883944E704A
+
+#include <string>
+
+#if __cplusplus >= 201703L
+#include <string_view>
+#endif  // __cplusplus >= 201703L
+
+std::string bdvt_encode     (std::string const& s, bool url = false);
+std::string bdvt_encode_pem (std::string const& s);
+std::string bdvt_encode_mime(std::string const& s);
+
+std::string bdvt_decode(std::string const& s, bool remove_linebreaks = false);
+std::string bdvt_encode(unsigned char const*, size_t len, bool url = false);
+
+#if __cplusplus >= 201703L
+//
+// Interface with std::string_view rather than const std::string&
+// Requires C++17
+// Provided by Yannic Bonenberger (https://github.com/Yannic)
+//
+std::string bdvt_encode     (std::string_view s, bool url = false);
+std::string bdvt_encode_pem (std::string_view s);
+std::string bdvt_encode_mime(std::string_view s);
+
+std::string bdvt_decode(std::string_view s, bool remove_linebreaks = false);
+#endif  // __cplusplus >= 201703L
+
+#endif /* bdvt_H_C0CE2A47_D10E_42C9_A27C_C883944E704A */
